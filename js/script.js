@@ -1,71 +1,104 @@
 
 function playGame(player_input) { 
 
-    clearMessages();
+    clearMessages('messages');
 
     function getMoveName(move_id) {
         if(move_id == 1){
-            return 'kamień';
+            return '<i class="fas fa-hand-rock"></i>';
         } 
         else if(move_id == 2) {
-            return 'papier';
+            return '<i class="fas fa-hand-paper"></i>';
         }
         else if(move_id == 3) {
-            return 'nożyce';
-        }
-        else {
-            // printMessage('Nie znam ruchu o id ' + move_id + '.');
-            return 'nieznany ruch';
+            return '<i class="fas fa-hand-scissors"></i>';
         }
     }
 
     function displayResult(computer_move, player_move) {
 
-        if (computer_move == 'kamień' && player_move == 'papier') {
-            printMessage('Ty wygrywasz!');
+        if (computer_move == '<i class="fas fa-hand-rock"></i>' && player_move == '<i class="fas fa-hand-scissors"></i>') {
+            printMessage('<i class="far fa-frown"></i> Przegrałeś!');
+            return 'computer';
         }
-        else if (computer_move == 'nożyce' && player_move == 'kamień') {
-            printMessage('Ty wygrywasz!');
+        else if (computer_move == '<i class="fas fa-hand-paper"></i>' && player_move == '<i class="fas fa-hand-rock"></i>') {
+            printMessage('<i class="far fa-frown"></i> Przegrałeś!');
+            return 'computer';
         }
-        else if (computer_move == 'papier' && player_move == 'nożyce') {
-            printMessage('Ty wygrywasz!');
+        else if (computer_move == '<i class="fas fa-hand-scissors"></i>' && player_move == '<i class="fas fa-hand-paper"></i>') {
+            printMessage('<i class="far fa-frown"></i> Przegrałeś!');
+            return 'computer';
         }
         else if (computer_move == player_move) {
-            printMessage('Super! Remis!');
-        }
-        else if (player_move == 'nieznany ruch') {
-            printMessage('Błąd: Gracz podał zły zakres. Jeszcze raz.');
+            printMessage('<i class="fas fa-bars"></i> Remis!');
+            return 'tie';
         }
         else {
-            printMessage('Przegrałeś!');
+            printMessage('<i class="fas fa-crown"></i> Wygrałeś!');
+            return 'player';
         }
     }
 
     let random_number = Math.floor(Math.random() * 3 + 1);
-    // let player_input = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-
-    console.log('Wylosowana liczba to: ' + random_number);
-    console.log('Gracz wpisał: ' + player_input);
-
     let computer_move = getMoveName(random_number);
     let player_move = getMoveName(player_input);
 
-    printMessage('Mój ruch to: ' + computer_move);
-    printMessage('Twój ruch to: ' + player_move);
-
+    // console.log('Wylosowana liczba to: ' + random_number);
+    // console.log('Gracz wpisał: ' + player_input);
+    
+    printMessage('Ja wybrałem: ' + computer_move);
+    printMessage('Ty wybrałeś: ' + player_move);
+    
     let result = displayResult(computer_move, player_move);
-
-    console.log('Ruchy:', computer_move, player_move);
+    
+    // console.log('Ruchy:', computer_move, player_move);
+    
+    return result;
 }
 
+let computer_result = 0;
+let player_result = 0;
+let tie_result = 0;
+let games = 0;
+
 document.getElementById('play_rock').addEventListener('click', function(){
-    playGame(1);
+    let result = playGame(1);
+
+    // console.clear();
+    // console.log('Wynik:', result);
+
+    clearMessages('result');
+    if (result == 'computer') computer_result = computer_result + 1;
+    if (result == 'player') player_result = player_result + 1;
+    if (result == 'tie') tie_result = tie_result + 1;
+    games = games + 1;
+    printResult(games + ' gra: (ja) ' + computer_result + ' : ' + player_result + ' (Ty) :: remisów: ' + tie_result);
 });
 
 document.getElementById('play_paper').addEventListener('click', function(){
-    playGame(2);
+    let result = playGame(2);
+
+    // console.clear();
+    // console.log('Wynik:', result);
+
+    clearMessages('result');
+    if (result == 'computer') computer_result = computer_result + 1;
+    if (result == 'player') player_result = player_result + 1;
+    if (result == 'tie') tie_result = tie_result + 1;
+    games = games + 1;
+    printResult(games + ' gra: (ja) ' + computer_result + ' : ' + player_result + ' (Ty) :: remisów: ' + tie_result);
 });
 
 document.getElementById('play_scissors').addEventListener('click', function(){
-    playGame(3);
+    let result = playGame(3);
+
+    // console.clear();
+    // console.log('Wynik:', result);
+
+    clearMessages('result');
+    if (result == 'computer') computer_result = computer_result + 1;
+    if (result == 'player') player_result = player_result + 1;
+    if (result == 'tie') tie_result = tie_result + 1;
+    games = games + 1;
+    printResult(games + ' gra: (ja) ' + computer_result + ' : ' + player_result + ' (Ty) :: remisów: ' + tie_result);
 });

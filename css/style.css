@@ -1,1 +1,111 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #fff;
+  font-family: "Kelly Slab", cursive;
+}
+
+section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url("https://images.pexels.com/photos/326333/pexels-photo-326333.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.container {
+  max-width: 1470px;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.container .icons ul {
+  padding-left: 0;
+}
+
+.container .icons li {
+  display: inline;
+  font-size: 0px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.container .icons li i {
+  background-color: #000;
+  color: #fff;
+  font-size: 80px;
+  width: 160px;
+  height: 160px;
+  line-height: 160px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.container .icons li i:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-box-shadow: 0 0 10px #fbff00;
+          box-shadow: 0 0 10px #fbff00;
+}
+
+.container #messages {
+  min-height: 130px;
+  text-align: center;
+  color: #fff;
+  font-size: 25px;
+  text-shadow: 2px 2px 4px #000;
+  letter-spacing: 1.5px;
+}
+
+.container #result {
+  min-height: 50px;
+  text-align: center;
+  color: #fff;
+  font-size: 25px;
+  text-shadow: 2px 2px 4px #000;
+  letter-spacing: 1.5px;
+}
+
+.container .rules {
+  margin: 0 auto;
+  border: 1px dotted #fbff00;
+  background-color: #000;
+  opacity: 0.8;
+  max-width: 600px;
+  padding: 20px;
+  letter-spacing: 1px;
+}
+
+.container .rules p {
+  margin: 5px;
+}
+/*# sourceMappingURL=style.css.map */
