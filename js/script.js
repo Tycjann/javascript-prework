@@ -6,41 +6,47 @@
     const msg_lose = '<i class="far fa-frown"></i> Przegrałeś!';
     const msg_tie = '<i class="fas fa-bars"></i> Remis!';
     const msg_win = '<i class="fas fa-crown"></i> Wygrałeś!';
+
+    const movesByNumber = [null, rock, paper, scissors];
+
+    const computerWins = [
+        rock + scissors,
+        paper + rock,
+        scissors + paper
+    ];
+
+    let computer_result = 0;
+    let player_result = 0;
+    let tie_result = 0;
+    let games = 0;
+
+    document.getElementById('play_rock').addEventListener('click', function(){
+        resultCounter(playGame(1));
+    });
+
+    document.getElementById('play_paper').addEventListener('click', function(){
+        resultCounter(playGame(2));
+    });
+
+    document.getElementById('play_scissors').addEventListener('click', function(){
+        resultCounter(playGame(3));
+    });
     
     function displayResult(computer_move, player_move) {
-
-        if (computer_move == rock && player_move == scissors) {
+        if (computerWins.includes(computer_move + player_move)) {
             printMessage(msg_lose);
             return 'computer';
         }
-        else if (computer_move == paper && player_move == rock) {
-            printMessage(msg_lose);
-            return 'computer';
-        }
-        else if (computer_move == scissors && player_move == paper) {
-            printMessage(msg_lose);
-            return 'computer';
-        }
-        else if (computer_move == player_move) {
+        if (computer_move == player_move) {
             printMessage(msg_tie);
             return 'tie';
         }
-        else {
-            printMessage(msg_win);
-            return 'player';
-        }
+        printMessage(msg_win);
+        return 'player';
     }
 
     function getMoveName(move_id) {
-        if(move_id == 1){
-            return rock;
-        } 
-        else if(move_id == 2) {
-            return paper;
-        }
-        else if(move_id == 3) {
-            return scissors;
-        }
+        return movesByNumber[move_id];
     }
 
     function resultCounter(result) {
@@ -54,33 +60,13 @@
 
     function playGame(player_input) { 
 
-        let random_number = Math.floor(Math.random() * 3 + 1);
-        let computer_move = getMoveName(random_number);
-        let player_move = getMoveName(player_input);
+        const random_number = Math.floor(Math.random() * 3 + 1);
+        const computer_move = getMoveName(random_number);
+        const player_move = getMoveName(player_input);
 
         clearMessages('messages');
         printMessage('Ja wybrałem: ' + computer_move);
         printMessage('Ty wybrałeś: ' + player_move);
         return displayResult(computer_move, player_move);
     }
-
-    let computer_result = 0;
-    let player_result = 0;
-    let tie_result = 0;
-    let games = 0;
-
-    document.getElementById('play_rock').addEventListener('click', function(){
-        let result = playGame(1);
-        resultCounter(result);
-    });
-
-    document.getElementById('play_paper').addEventListener('click', function(){
-        let result = playGame(2);
-        resultCounter(result);
-    });
-
-    document.getElementById('play_scissors').addEventListener('click', function(){
-        let result = playGame(3);
-        resultCounter(result);
-    });
 }
